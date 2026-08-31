@@ -1,0 +1,6 @@
+# Flags appended to the ExecStart in victoriametrics.service.
+#
+# Managed by ansible on hosts that run the monitoring role; edit there, not
+# here. Retention, listen address, cache size and the HA deduplication interval
+# all live in this one string.
+ARGS=""

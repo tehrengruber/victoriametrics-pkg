@@ -1,0 +1,38 @@
+# Maintainer: Till Ehrengruber <till@ehrengruber.ch>
+#
+# The upstream release binary, packaged here rather than taken from the AUR.
+#
+# The AUR has three VictoriaMetrics packages and only one of them was current
+# when this was written: the from-source build had been flagged out of date for
+# a fortnight, and the agent package for ten months, both still looking like
+# maintained packages from the outside. The maintained one has two votes and a
+# single maintainer. That is a thin dependency for the store that everything
+# else reports into, so it lives here instead, where a release is a pkgver and
+# two checksums (see ../update-pkgver.sh).
+
+pkgname=victoriametrics
+pkgver=1.150.0
+pkgrel=1
+pkgdesc="Fast, cost-effective and scalable time series database"
+arch=('x86_64' 'aarch64')
+url="https://docs.victoriametrics.com/"
+license=('Apache-2.0')
+backup=('etc/default/victoriametrics')
+conflicts=('victoriametrics-bin')
+
+_url="https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v${pkgver}"
+source=('victoriametrics.service'
+        'victoriametrics.default')
+source_x86_64=("victoria-metrics-${pkgver}-amd64.tar.gz::${_url}/victoria-metrics-linux-amd64-v${pkgver}.tar.gz")
+source_aarch64=("victoria-metrics-${pkgver}-arm64.tar.gz::${_url}/victoria-metrics-linux-arm64-v${pkgver}.tar.gz")
+sha256sums=('c562ba07e430c1ec2977318c36f4af690adafea8c1321628eff112403d749d0e'
+            '92c2727cb6832a68e558ee0a201967876781a02f4a8351969bf4b808afb244bc')
+sha256sums_x86_64=('22bfe77be3de1ad03f214a005129312536d77ed4e293b66c186df417ee40a61d')
+sha256sums_aarch64=('fdb9e272f5e4d49cb506991b7293ed53bccbff821a62653dea7c463ae1980da5')
+
+package() {
+  # Upstream names the binary victoria-metrics-prod inside the tarball.
+  install -Dm755 "${srcdir}/victoria-metrics-prod" "${pkgdir}/usr/bin/victoria-metrics"
+  install -Dm644 "${srcdir}/victoriametrics.service" "${pkgdir}/usr/lib/systemd/system/victoriametrics.service"
+  install -Dm644 "${srcdir}/victoriametrics.default" "${pkgdir}/etc/default/victoriametrics"
+}
