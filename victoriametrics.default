@@ -1,0 +1,5 @@
+# Flags appended to the ExecStart in victoriametrics.service.
+#
+# Retention, listen address, cache size and the HA deduplication interval all
+# live in this one string.
+ARGS=""
