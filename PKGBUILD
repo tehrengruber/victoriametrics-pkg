@@ -6,9 +6,9 @@
 # when this was written: the from-source build had been flagged out of date for
 # a fortnight, and the agent package for ten months, both still looking like
 # maintained packages from the outside. The maintained one has two votes and a
-# single maintainer. That is a thin dependency for the store that everything
-# else reports into, so it lives here instead, where a release is a pkgver and
-# two checksums (see ../update-pkgver.sh).
+# single maintainer. Packaging the release binary here costs a pkgver and two
+# checksums per release (see ./update.sh), which is cheaper than carrying that
+# risk.
 
 pkgname=victoriametrics
 pkgver=1.151.0
