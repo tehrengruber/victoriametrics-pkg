@@ -26,7 +26,7 @@ source=('victoriametrics.service'
 source_x86_64=("victoria-metrics-${pkgver}-amd64.tar.gz::${_url}/victoria-metrics-linux-amd64-v${pkgver}.tar.gz")
 source_aarch64=("victoria-metrics-${pkgver}-arm64.tar.gz::${_url}/victoria-metrics-linux-arm64-v${pkgver}.tar.gz")
 sha256sums=('c562ba07e430c1ec2977318c36f4af690adafea8c1321628eff112403d749d0e'
-            '92c2727cb6832a68e558ee0a201967876781a02f4a8351969bf4b808afb244bc')
+            'dd937f13c1c9a6ac654a1e6f901d117191a3ab9b0deb295c4b6231c698a1b9b3')
 sha256sums_x86_64=('629bd538bdccaae6cb6c33fd6d387387abf5b6c00f2a99667407ad6085db1c91')
 sha256sums_aarch64=('4c9236165fdbe8d3175103cf59f0179cfbf49355a39f9959febfde877e6f0a08')
 
