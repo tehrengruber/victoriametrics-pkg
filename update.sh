@@ -16,9 +16,18 @@ asset_arm64='victoria-metrics-linux-arm64-v%s.tar.gz'
 here=$(cd "$(dirname "$0")" && pwd)
 pkgbuild=$here/PKGBUILD
 
+# Unauthenticated API calls share a 60/hour limit per IP, which CI runners
+# routinely exhaust (curl then fails with a 403). Use a token when there is one.
+token=${GH_TOKEN:-${GITHUB_TOKEN:-}}
+api() {
+    curl -sSfL -H 'Accept: application/vnd.github+json' \
+         ${token:+-H "Authorization: Bearer $token"} \
+         "https://api.github.com/repos/$repo/$1"
+}
+
 version=${1:-}
 if [[ -z $version ]]; then
-    version=$(curl -sSf "https://api.github.com/repos/$repo/releases/latest" |
+    version=$(api releases/latest |
               python3 -c 'import json,sys; print(json.load(sys.stdin)["tag_name"].lstrip("v"))')
 fi
 
@@ -28,7 +37,7 @@ if [[ $current == "$version" ]]; then
     exit 0
 fi
 
-release=$(curl -sSf "https://api.github.com/repos/$repo/releases/tags/v$version")
+release=$(api "releases/tags/v$version")
 
 digest_of() {
     printf '%s' "$release" | python3 -c '
