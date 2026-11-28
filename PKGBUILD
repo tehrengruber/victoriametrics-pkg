@@ -11,7 +11,7 @@
 # risk.
 
 pkgname=victoriametrics
-pkgver=1.156.0
+pkgver=1.157.0
 pkgrel=1
 pkgdesc="Fast, cost-effective and scalable time series database"
 arch=('x86_64' 'aarch64')
@@ -27,8 +27,8 @@ source_x86_64=("victoria-metrics-${pkgver}-amd64.tar.gz::${_url}/victoria-metric
 source_aarch64=("victoria-metrics-${pkgver}-arm64.tar.gz::${_url}/victoria-metrics-linux-arm64-v${pkgver}.tar.gz")
 sha256sums=('c562ba07e430c1ec2977318c36f4af690adafea8c1321628eff112403d749d0e'
             'dd937f13c1c9a6ac654a1e6f901d117191a3ab9b0deb295c4b6231c698a1b9b3')
-sha256sums_x86_64=('54409ea381db0316f0bf6f242c718bc498085eb1eb37520b73526e6d86891601')
-sha256sums_aarch64=('f777110b232bfdf435556c57d0896716e27000afafe969c4eb08852352dceb7d')
+sha256sums_x86_64=('7b31192da6cf805b8b9244a904b022948e8022a067a822c30cb9f94600d0c387')
+sha256sums_aarch64=('e5368dec72d212dcb2b994345ab872245299000d37197f723123e63a50e573b5')
 
 package() {
   # Upstream names the binary victoria-metrics-prod inside the tarball.
